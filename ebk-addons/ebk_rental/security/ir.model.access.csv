@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ebk_rental_rental_customerservice,rental.customerservice,model_rental_customerservice,,1,1,1,1
+access_ebk_rental_rental_registerservice,rental.registerservice,model_rental_registerservice,,1,1,1,1
+access_ebk_rental_rental_service_lines,rental.service.lines,model_rental_service_lines,,1,1,1,1
+access_ebk_rental_rental_order_lines,rental.order.lines,model_rental_order_lines,,1,1,1,1

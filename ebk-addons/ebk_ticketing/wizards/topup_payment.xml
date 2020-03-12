@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="ticketing_topup_payment" model="ir.ui.view">
+        <field name="name">topup.payment.wizard</field>
+        <field name="model">topup.payment</field>
+        <field name="arch" type="xml">
+            <form string="Nhập tiền xuất vé">
+                <group>
+                    <field name="customer_id"/>
+                    <field name="supplier_id"/>
+                    <field name="code"/>
+                    <field name="money"/>
+                    <field name="payment_fee"/>
+                    <field name="supplier_fee"/>
+                    <field name="notes"/>
+                    <footer>
+                        <button name="create_topup_payment" string="Create" class="btn-primary" type="object"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="ticketing_topup_payment_wizard" model="ir.actions.act_window">
+        <field name="name">Nhập tiền xuất vé</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">topup.payment</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="ticketing_topup_payment"/>
+    </record>
+
+</odoo>

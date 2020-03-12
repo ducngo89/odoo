@@ -1,0 +1,98 @@
+<odoo>
+    <data>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="action_ticketing_passenger">
+            <field name="name">Hành khách</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ticketing.passenger</field>
+            <field name="context"></field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+          Create First Passenger
+                </p>
+            </field>
+        </record>
+        <!-- end actions opening views on models -->
+
+        <!-- tree view of the model -->
+        <record id="ticketing_passenger_tree" model="ir.ui.view">
+            <field name="name">ticketing.passenger.tree</field>
+            <field name="model">ticketing.passenger</field>
+            <field name="arch" type="xml">
+                <tree string="Hành khách">
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="dob"/>
+                    <field name="sex"/>
+                </tree>
+            </field>
+        </record>
+        <!-- end tree view of the model -->
+        <!-- tree view of the model -->
+        <record id="ticketing_passenger_form" model="ir.ui.view">
+            <field name="name">ticketing.passenger.form</field>
+            <field name="model">ticketing.passenger</field>
+            <field name="arch" type="xml">
+                <form string="Hành khách">
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="fullname"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="first_name"/>
+                                <field name="last_name"/>
+                                <field name="dob"/>
+                                <field name="sex"/>
+                            </group>
+                            <group>
+                                <field name="phone"/>
+                                <field name="mobile"/>
+                                <field name="email"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <label for="" name="address_name">
+                                    <b>Địa chỉ</b>
+                                </label>
+                                <div class="o_address_format">
+                                    <field name="country_id" placeholder="Quốc gia" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
+                                    <field name="state_id" class="o_address_state" placeholder="Thành phố" options="{&quot;no_open&quot;: True}" context="{'country_id': country_id}"/>
+                                    <field name="street" placeholder="Địa chỉ..." class="o_address_street"/>
+                                </div>
+                            </group>
+
+                        </group>
+                        <group>
+                            <group>
+                                <field name="pax_no"/>
+                                <field name="issue_date"/>
+                                <field name="issue_country_id" options="{&quot;no_open&quot;: True}"/>
+                                <field name="issue_country_state_id" context="{'country_id': issue_country_id}" options="{&quot;no_open&quot;: True}"/>
+                            </group>
+                            <group>
+                                <field name="passport_no"/>
+                                <field name="passport_issue_date"/>
+                                <field name="passport_due_date"/>
+                                <field name="passport_issue_country_id" options="{&quot;no_open&quot;: True}"/>
+                                <field name="passport_issue_country_state_id" context="{'country_id': issue_country_id}" options="{&quot;no_open&quot;: True}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!-- end tree view of the model -->
+    </data>
+</odoo>

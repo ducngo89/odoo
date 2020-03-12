@@ -1,0 +1,28 @@
+<odoo>
+    <!-- inherit product -->
+    <record id='product_inherit' model='ir.ui.view'>
+        <field name='name'>product.template.inherit</field>
+        <field name='model'>product.template</field>
+        <!-- get from ui, edit view sale order -->
+        <field name='inherit_id' ref='product.product_template_only_form_view'/>
+        <field name="arch" type="xml">
+            <!-- add check box -->
+            <div name="options" position="inside">
+                <div>
+                    <field name="is_transport"/>
+                    <label for="is_transport"/>
+                </div>
+            </div>
+            <!-- end add check box -->
+            <!-- <div name="barcode" position="after">
+                <field name="location_departure"/>
+                <field name="location_arrival"/>
+            </div> -->
+            <field name="categ_id" position="after">
+                <field name="location_departure" attrs="{'invisible': [('is_transport','!=',True)]}"/>
+                <field name="location_arrival" attrs="{'invisible': [('is_transport','!=',True)]}"/>
+            </field>
+        </field>
+    </record>
+    <!-- end inherit product -->
+</odoo>

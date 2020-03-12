@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="ticketing_topup_agent" model="ir.ui.view">
+        <field name="name">topup.agent.wizard</field>
+        <field name="model">topup.agent</field>
+        <field name="arch" type="xml">
+            <form string="Nạp tiền đại lý">
+                <group>
+                    <field name="customer_id"/>
+                    <field name="bank_id"/>
+                    <field name="money"/>
+                    <field name="notes"/>
+                    <footer>
+                        <button name="create_topup_agent" string="Create" class="btn-primary" type="object"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="ticketing_topup_agent_wizard" model="ir.actions.act_window">
+        <field name="name">Nạp tiền đại lý</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">topup.agent</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="ticketing_topup_agent"/>
+    </record>
+
+</odoo>

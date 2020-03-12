@@ -1,0 +1,44 @@
+<odoo>
+  <data>
+
+    <!-- root menu -->
+    <menuitem name="Travel" id="ebk_ticketing.menu_root"/>
+    <!-- end root menu -->
+
+    <!-- transaction menus -->
+    <menuitem name="Giao dịch" id="ebk_ticketing.ticketing_transaction" parent="ebk_ticketing.menu_root" sequence="1"/>
+    <menuitem name="Lịch sử giao dịch" id="ebk_ticketing.topup" parent="ebk_ticketing.ticketing_transaction" action="action_ticketing_transaction"/>
+    <menuitem name="Số dư" id="ebk_ticketing.balance" parent="ebk_ticketing.ticketing_transaction" action="action_ticketing_balance"/>
+    <menuitem name="Topup đại lý" id="ebk_ticketing.topup_agent" parent="ebk_ticketing.ticketing_transaction" action="ticketing_topup_agent_wizard"/>
+    <menuitem name="Topup hãng" id="ebk_ticketing.topup_supplier" parent="ebk_ticketing.ticketing_transaction" action="ticketing_topup_supplier_wizard"/>
+    <menuitem name="Nhập tiền xuất vé" id="ebk_ticketing.topup_payment" parent="ebk_ticketing.ticketing_transaction" action="ticketing_topup_payment_wizard"/>
+    <menuitem name="Chuyển tiền nội bộ" id="ebk_ticketing.topup_transfer" parent="ebk_ticketing.ticketing_transaction" action="ticketing_topup_transfer_wizard"/>
+    <!-- end transaction menus -->
+
+    <!-- ticket manager -->
+    <menuitem name="Vé máy bay" id="ebk_ticketing.ticketing_tickets_root" parent="ebk_ticketing.menu_root" sequence="2" action="action_ticketing_booking"/>
+    <!-- end ticket manager -->
+       <!-- ticket manager -->
+    <menuitem name="Vé tàu/xe" id="ebk_ticketing.ticketing_transport_root" parent="ebk_ticketing.menu_root" sequence="2" action="action_ticketing_booking"/>
+    <!-- end ticket manager -->
+
+    <!-- passenger manager -->
+    <menuitem name="Hành khách" id="ebk_ticketing.ticketing_passenger" parent="ebk_ticketing.menu_root" sequence="3" action="action_ticketing_passenger"/>
+    <!-- end passenger manager -->
+
+    <!-- invoice manager -->
+    <menuitem name="Hóa đơn" id="ebk_ticketing.ticketing_invoice_root" parent="ebk_ticketing.menu_root" sequence="4" action="action_ticketing_transaction"/>
+    <!-- end invoice manager -->
+
+    <!-- report manager -->
+    <menuitem name="Báo cáo" id="ebk_ticketing.ticketing_report_root" parent="ebk_ticketing.menu_root" sequence="5" action="action_ticketing_transaction"/>
+    <!-- end report manager -->
+
+    <!-- configuration -->
+    <menuitem name="Thiết lập" id="ebk_ticketing.ticketing_settings_root" parent="ebk_ticketing.menu_root" sequence="6"/>
+    <menuitem name="Tài khoản topup" id="ebk_ticketing.ticketing_settings_topup" parent="ebk_ticketing.ticketing_settings_root" action="action_ticketing_topup_config_settings"/>
+    <menuitem name="Địa điểm" id="ebk_ticketing.ticketing_settings_location" parent="ebk_ticketing.ticketing_settings_root" action="action_ticketing_topup_config_settings"/>
+    <!-- end configuration -->
+
+  </data>
+</odoo>

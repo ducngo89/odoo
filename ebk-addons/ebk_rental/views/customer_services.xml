@@ -1,0 +1,181 @@
+<odoo>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="action_customer_services">
+        <field name="name">Customer Services</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">rental.customerservice</field>
+        <field name="context"></field>
+        <field name="view_mode">tree,form,calendar,kanban</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+          No Customer Services
+            </p>
+        </field>
+    </record>
+    <!-- end actions opening views on models -->
+
+    <!-- tree view of the model -->
+    <record id="rental_customerservice_tree" model="ir.ui.view">
+        <field name="name">rental.customerservice.tree</field>
+        <field name="model">rental.customerservice</field>
+        <field name="arch" type="xml">
+            <tree string="Customer Services"  decoration-info="status == 'going'" decoration-danger="status == 'expired'">
+                <field name="partner_id"/>
+                <field name="website"/>
+                <field name="start_date"/>
+                <field name="expried_date"/>
+                <field name="status"/>
+                <field name="notes"/>
+            </tree>
+        </field>
+    </record>
+    <!-- end tree view of the model -->
+
+    <!-- form view of the model -->
+    <record id="rental_customerservice_form" model="ir.ui.view">
+        <field name="name">rental.customerservice.form</field>
+        <field name="model">rental.customerservice</field>
+        <field name="arch" type="xml">
+            <form string="Hợp đồng dịch vụ">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                        </group>
+                        <group>
+                            <field name="website" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                        </group>
+                        <group>
+                            <field name="expried_date"/>
+                        </group>
+                        <group>
+                            <field name="status"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                    <group>
+                        <field name="service_lines">
+                            <tree>
+                                <field name="id"/>
+                                <field name="product_id"/>
+                                <field name="start_date"/>
+                                <field name="expried_date"/>
+                                <field name="notes"/>
+                            </tree>
+                            <form>
+                                <group>
+                                    <field name="product_id"/>
+                                </group>
+                                <group>
+                                    <group>
+                                        <field name="start_date"/>
+                                    </group>
+                                    <group>
+                                        <field name="expried_date"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="notes"/>
+                                </group>
+                            </form>
+                        </field>
+                    </group>
+                    <group>
+                        <field name="order_lines">
+                            <tree>
+                                <field name="id"/>
+                                <field name="order_id"/>
+                                <field name="date_order"/>
+                                <field name="amount_total" sum="Tổng tiền đã thanh toán"/>
+                                <field name="create_uid"/>
+                            </tree>
+                            <form>
+                                <group>
+                                    <group>
+                                        <field name="order_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="date_order"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="amount_total" sum="Tổng tiền đã thanh toán"/>
+                                </group>
+                            </form>
+                        </field>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <!-- end form view of the model -->
+
+    <record id="rental_customerservice_calendar" model="ir.ui.view">
+        <field name="name">rental.customerservice.calendar</field>
+        <field name="model">rental.customerservice</field>
+        <field name="priority" eval="2"/>
+        <field name="arch" type="xml">
+            <calendar string="Customer" date_start="expried_date" color="partner_id">
+                <field name="partner_id"/>
+                <field name="website"/>
+            </calendar>
+        </field>
+    </record>
+
+    <record id='rental_customerservice_kanban' model='ir.ui.view'>
+        <field name="name">rental.customerservice.kanban</field>
+        <field name="model">rental.customerservice</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="website"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_global_click">
+                            <div>
+                                <strong>
+                                    <field name="partner_id"/>
+                                    <span class="float-right">
+                                        <field name="expried_date"/>
+                                    </span>
+                                </strong>
+                            </div>
+                            <div>
+                                <field name="website"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- search view -->
+    <record id="rental_customerservice_search" model="ir.ui.view">
+        <field name="name">rental.customerservice.search</field>
+        <field name="model">rental.customerservice</field>
+        <field name="arch" type="html">
+            <search string="Customer Service">
+                <field name="partner_id"/>
+                <field name="website"/>
+                <separator />
+                <!-- <filter string="Sắp hết hạn" domain="[('id', '=', '1')]"/> -->
+            </search>
+        </field>
+    </record>
+    <!-- end search view -->
+    
+</odoo>

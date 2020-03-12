@@ -1,0 +1,251 @@
+<odoo>
+    <data>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="action_ticketing_booking">
+            <field name="name">Booking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ticketing.booking</field>
+            <field name="context"></field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+          Create First Booking
+                </p>
+            </field>
+        </record>
+        <!-- end actions opening views on models -->
+
+        <!-- tree view of the model -->
+        <record id="ticketing_booking_tree" model="ir.ui.view">
+            <field name="name">ticketing.booking.tree</field>
+            <field name="model">ticketing.booking</field>
+            <field name="arch" type="xml">
+                <tree string="Booking">
+                    <field name="booking_pnr"/>
+                </tree>
+            </field>
+        </record>
+        <!-- end tree view of the model -->
+
+        <!-- form view of the model -->
+        <record id="ticketing_booking_form" model="ir.ui.view">
+            <field name="name">ticketing.booking.form</field>
+            <field name="model">ticketing.booking</field>
+            <field name="arch" type="xml">
+                <form string="Booking">
+                    <!-- show header with status -->
+                    <header>
+                        <button name="action_confirm" type="object" string="Confirm" states="draft" class="oe_highlight" />
+                        <button name="action_done" type="object" string="Done" states="confirm" class="oe_highlight" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,book,timeout,book_error,confirm_error,confirm"/>
+                    </header>
+                    <!-- end show header with status -->
+                    <sheet>
+
+                        <div class="oe_title">
+                            <h1>
+                                Mã đặt chỗ: <field name="booking_pnr"/>
+                            </h1>
+                        </div>
+
+                        <group>
+                            <group>
+                                <field name="contact_id"/>
+                                <field name="contact_name"/>
+                                <field name="contact_address"/>
+                                <field name="contact_phone"/>
+                                <field name="contact_email"/>
+                            </group>
+                            <group>
+
+                                <field name="booker"/>
+                                <field name="create_date"/>
+                                <field name="hold_date"/>
+                                <hr/>
+                                <field name="confirm_user"/>
+                                <field name="confirm_date"/>
+                                <hr/>
+                                <field name="total_price_amount"/>
+                                <field name="total_price_net"/>
+                                <field name="currency_id"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="segment_list">
+                                <tree>
+                                    <field name="type_way"/>
+                                    <field name="flight_number"/>
+                                    <field name="aircraft"/>
+                                    <field name="flight_class"/>
+                                    <field name="airport_departure"/>
+                                    <field name="airport_arrival"/>
+                                    <field name="flight_date_departure"/>
+                                    <field name="flight_date_arrival"/>
+                                </tree>
+                                <form>
+                                    <div class="oe_title">
+                                        <label for="" name="flight_number">
+                                            <b>Mã chuyến bay</b>
+                                        </label>
+                                        <h1>
+                                            <field name="flight_number"/>
+                                        </h1>
+                                    </div>
+                                    <group>
+                                        <group>
+                                            <field name="airline_id"/>
+                                            <field name="type_way"/>
+                                            <field name="airport_departure"/>
+                                            <field name="airport_arrival"/>
+
+                                            <field name="flight_class"/>
+                                            <field name="flight_date_departure"/>
+                                            <field name="flight_date_arrival"/>
+                                        </group>
+                                        <group>
+                                            <field name="supplier_id"/>
+                                            <field name="aircraft"/>
+                                            <field name="flight_during_time"/>
+                                            <field name="gate_departure"/>
+                                            <field name="gate_arrival"/>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                        <group>
+                            <field name="passenger_list">
+                                <tree>
+                                    <field name="pax_type"/>
+                                    <field name="first_name"/>
+                                    <field name="last_name"/>
+                                    <field name="dob"/>
+                                    <field name="sex"/>
+                                </tree>
+                                <form>
+                                    <div class="oe_title">
+                                        <label for="" name="fullname">
+                                            <b>Hành khách</b>
+                                        </label>
+                                        <h1>
+                                            <field name="fullname"/>
+                                        </h1>
+                                    </div>
+                                    <group>
+                                        <group>
+                                            <field name="passenger_id"/>
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <group>
+                                            <field name="pax_type"/>
+                                            <field name="first_name"/>
+                                            <field name="last_name"/>
+                                            <field name="dob"/>
+                                            <field name="sex"/>
+                                        </group>
+                                        <group>
+                                            <field name="ticket_no_departure"/>
+                                            <field name="ticket_no_return"/>
+                                            <field name="vat_no"/>
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <group>
+                                            <field name="phone"/>
+                                            <field name="mobile"/>
+                                            <field name="email"/>
+                                        </group>
+                                        <group>
+                                            <field name="pax_no"/>
+                                            <field name="issue_date"/>
+                                            <field name="issue_country_id" options="{&quot;no_open&quot;: True}"/>
+                                            <field name="issue_country_state_id" context="{'country_id': issue_country_id}" options="{&quot;no_open&quot;: True}"/>
+                                        </group>
+                                        <group>
+                                            <field name="passport_no"/>
+                                            <field name="passport_issue_date"/>
+                                            <field name="passport_due_date"/>
+                                            <field name="passport_issue_country_id" options="{&quot;no_open&quot;: True}"/>
+                                            <field name="passport_issue_country_state_id" context="{'country_id': issue_country_id}" options="{&quot;no_open&quot;: True}"/>
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <field name="notes"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                        <group>
+                            <field name="addon_list">
+                                <tree>
+                                    <field name="flight_no"/>
+                                    <field name="passenger_name"/>
+                                    <field name="addon"/>
+                                    <field name="value"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="passenger_id"/>
+                                            <field name="passenger_name"/>
+                                            <field name="flight_no"/>
+                                        </group>
+                                        <group>
+                                            <field name="addon"/>
+                                            <field name="value"/>
+                                            <field name="money"/>
+                                            <field name="currency_id"/>
+                                        </group>
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                        <group>
+                            <field name="price_list">
+                                <tree>
+                                    <field name="type_way"/>
+                                    <field name="passenger_id"/>
+                                    <field name="price_type"/>
+                                    <field name="notes"/>
+                                    <field name="currency_id"/>
+                                    <field name="price_amount"/>
+                                    <field name="price_vat"/>
+                                    <field name="price_after" sum="Tổng tiền"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="type_way"/>
+                                            <field name="passenger_id"/>
+                                            <field name="passenger_name"/>
+                                            <field name="price_type"/>
+                                        </group>
+                                        <group>
+
+                                            <field name="currency_id"/>
+                                            <field name="price_amount"/>
+                                            <field name="price_vat"/>
+                                            <field name="price_after" sum="Tổng tiền"/>
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <field name="notes"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

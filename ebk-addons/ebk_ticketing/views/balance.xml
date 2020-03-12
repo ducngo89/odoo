@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="action_ticketing_balance">
+            <field name="name">Số dư</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ticketing.balance</field>
+            <field name="context"></field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+          Create First Balance
+                </p>
+            </field>
+        </record>
+        <!-- end actions opening views on models -->
+
+        <!-- tree view of the model -->
+        <record id="ticketing_balance_tree" model="ir.ui.view">
+            <field name="name">ticketing.balance.tree</field>
+            <field name="model">ticketing.balance</field>
+            <field name="arch" type="xml">
+                <tree string="Số dư">
+                    <field name="customer_id"/>
+                    <field name="account_type"/>
+                    <field name="balance" sum="Sum of Money"/>
+                    <field name="last_date"/>
+                </tree>
+            </field>
+        </record>
+        <!-- end tree view of the model -->
+
+        <!-- inherit res.partner -->
+        <record id='res_partner_inherit' model='ir.ui.view'>
+            <field name='name'>res.partner.inherit</field>
+            <field name='model'>res.partner</field>
+            <!-- get from ui, edit view sale order -->
+            <field name='inherit_id' ref='base.view_partner_form'/>
+            <field name="arch" type="xml">
+                <!-- add check box -->
+                <field name="category_id" position="after">
+                    <field name="topup_type"/>
+                </field>
+                <!-- end add check box -->
+            </field>
+        </record>
+        <!-- end inherit partner -->
+
+    </data>
+</odoo>

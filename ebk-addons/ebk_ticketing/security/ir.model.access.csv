@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ticketing_balance,ticketing.balance,model_ticketing_balance,,1,1,1,1
+access_ticketing_booking_addon,ticketing.booking.addon,model_ticketing_booking_addon,,1,1,1,1
+access_ticketing_booking_passenger,ticketing.booking.passenger,model_ticketing_booking_passenger,,1,1,1,1
+access_ticketing_passenger,ticketing.passenger,model_ticketing_passenger,,1,1,1,1
+access_ticketing_booking_price,ticketing.booking.price,model_ticketing_booking_price,,1,1,1,1
+access_ticketing_booking_segment,ticketing.booking.segment,model_ticketing_booking_segment,,1,1,1,1
+access_ticketing_booking,ticketing.booking,model_ticketing_booking,,1,1,1,1
+access_ticketing_master_airline,ticketing.master.airline,model_ticketing_master_airline,,1,1,1,1
+access_ticketing_master_airport,ticketing.master.airport,model_ticketing_master_airport,,1,1,1,1
+access_ticketing_master_location,ticketing.master.location,model_ticketing_master_location,,1,1,1,1
+access_res_config_settings,res.config.settings,model_res_config_settings,,1,1,1,1
+access_ticketing_transaction,ticketing.transaction,model_ticketing_transaction,,1,1,1,1

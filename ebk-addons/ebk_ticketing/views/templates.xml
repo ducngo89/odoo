@@ -1,0 +1,258 @@
+<odoo>
+  <data>
+
+    <template id="index">
+      <t t-call="website.layout">
+        <t t-set="title">Vận Chuyển</t>
+
+        <div class="container">
+          <!-- <p class="teacher">Hello world!</p>
+          <ul>
+            <t t-foreach="teachers" t-as="teacher">
+              <li>
+                <t t-esc="teacher"/>
+              </li>
+            </t>
+          </ul> -->
+          <div class="oe_structure"/>
+          <!-- search box for transport -->
+
+          <div class="box-content mt-2 mb-2">
+            <h2 class="title-form-on-mobile" style="display: none;">Flight</h2>
+            <form class="search-form" action="/transport/search" method="get" autocomplete="off">
+              <div class="row" style="margin-left: 6px">
+                <div class="mb-2 col">
+                  <div class="radio-inline radio-custom">
+                    <input type="radio" class="form-check-input" name="rdbSearchType" id="oneway" value="OneWay" checked=""/>
+                    <label for="oneway">Một chiều</label>
+                  </div>
+                  <div class="radio-inline radio-custom">
+                    <input type="radio" class="form-check-input" name="rdbSearchType" id="roundtrip" value="RoundTrip"/>
+                    <label for="roundtrip">Khứ hồi</label>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="form-label">Điểm đi</label>
+                    <select type="text" name="txtFromCity" id="txtFromCity" class="form-control departure-city">
+                      <t t-foreach="locations" t-as="l">
+                        <option t-att-value="l.id">
+                          <t t-esc="l.location"/>
+                        </option>
+                      </t>
+                    </select>
+
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label class="form-label">Điểm đến</label>
+                    <select type="text" name="txtToCity" id="txtToCity" class="form-control arrival-city">
+                      <t t-foreach="locations" t-as="l">
+                        <option t-att-value="l.id">
+                          <t t-esc="l.location"/>
+                        </option>
+                      </t>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 col-lg-6">
+
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-6">
+                        <label class="form-label">Ngày đi</label>
+                        <div class="has-feedback">
+                          <input type="text" name="txtDepartureDate" id="depart-date" class="form-control depart-date hasDatepicker" tabindex="1" placeholder="" autocomplete="off" value="08/03/2020" readonly=""/>
+                          <span class="fa fa-calendar-alt form-control-feedback"></span>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <label class="form-label">Ngày về</label>
+                        <div class="has-feedback">
+                          <input type="text" name="txtReturnDate" id="return-date" class="form-control return-date hasDatepicker" tabindex="1" placeholder="" autocomplete="off" value="11/03/2020" readonly=""/>
+                          <span class="fa fa-calendar-alt form-control-feedback"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-3">
+                        <label class="form-label">Người lớn</label>
+                        <select id="dllAdult" name="dllAdult" data-value="1" class="form-control">
+                          <option value="1" selected="">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                        </select>
+                      </div>
+                      <div class="col-3">
+                        <label class="form-label">Trẻ em (2-11)</label>
+                        <select id="dllChild" name="dllChild" data-value="1" class="form-control">
+                          <option value="0" selected="">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                        </select>
+                      </div>
+                      <div class="col-3">
+                        <label class="form-label">Em bé (&lt; 2)</label>
+                        <select id="dllInfant" name="dllInfant" data-value="1" class="form-control">
+                          <option value="0" selected="">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                        </select>
+                      </div>
+                      <div class="col-3">
+                        <label class="form-label">Người già (&lt; 2)</label>
+                        <select id="dllInfant" name="dllOlder" data-value="1" class="form-control">
+                          <option value="0" selected="">0</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="box-bottom col">
+                  <button class="btn btn-primary btn-search float-right" type="submit">
+                    <i class="fa fa-search"></i>Tìm Kiếm</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- end search box for transport -->
+
+          <div class="oe_structure"/>
+
+        </div>
+      </t>
+    </template>
+
+    <template id="search">
+      <t t-call="website.layout">
+        <div class="container">
+          <div class="row mt-2 mb-2">
+            <div class="col-sm-8">
+              <h5 class="title color-primary">Chọn chuyến đi</h5>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Chuyến</th>
+                    <th scope="col">Điểm đi</th>
+                    <th scope="col">Điểm đến</th>
+                    <th scope="col" class="text-center">ECO</th>
+                    <th scope="col" class="text-center">VIP</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">CD36</th>
+                    <td>
+                      <label class="text-center"> Vũng tàu<br/>
+                      08:00</label>
+                    </td>
+                    <td>
+                      <label class="text-center">  Côn đảo<br/>
+                    12:00</label>
+                    </td>
+                    <td class="text-center">
+
+                      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""/>
+                      <br/>
+800,000
+                     
+                    </td>
+                    <td class="text-center">
+
+                      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""/>
+                      <br/>
+        1,800,000
+                     
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+
+              <h5 class="title color-primary">Chọn chuyến về</h5>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Chuyến</th>
+                    <th scope="col">Điểm đi</th>
+                    <th scope="col">Điểm đến</th>
+                    <th scope="col" class="text-center">ECO</th>
+                    <th scope="col" class="text-center">VIP</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">CD36</th>
+                    <td>
+                      <label class="text-center"> Vũng tàu<br/>
+                      08:00</label>
+                    </td>
+                    <td>
+                      <label class="text-center">  Côn đảo<br/>
+                    12:00</label>
+                    </td>
+                    <td class="text-center">
+
+                      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""/>
+                      <br/>
+800,000
+                     
+                    </td>
+                    <td class="text-center">
+
+                      <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked=""/>
+                      <br/>
+        1,800,000
+                     
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+            <div class="col-sm-4">
+                    summary 1
+            </div>
+          </div>
+        </div>
+      </t>
+
+    </template>
+
+  </data>
+</odoo>
